@@ -3,14 +3,18 @@ import { ReactNode } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from 'react-native';
 import Header from '@/components/Header';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from '@/components/Login'; // Add this line to import the Login component
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Stack = createStackNavigator();
+
+const Layout = () => {
+  const navigation = useNavigation();
+
   return (
-
     <View style={styles.container}>
-
-    <Header />
-
+      <Header />
       {/* Header */}
       <ScrollView contentContainerStyle={styles.scrollContent}/>
 
@@ -19,9 +23,12 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <Text style={styles.title}>Explore your feelings;</Text>
         <Text style={styles.subtitle}>we're here to hear</Text>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={Login}>
+            </Stack.Screen>
+        </Stack.Navigator>
 
         <View style={styles.profileWrapper}>
           <Image
@@ -47,10 +54,23 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <Text style={styles.computerText2}>You'll understand yourself</Text>
         <Text style={styles.computerText2}>better than ever</Text>
 
-      </View>
+        <Text style={styles.HowItWorks}>How It Works</Text>
+        <Text style={styles.computerText2}>Manage your experience from start to finish,</Text>
+        <Text style={styles.computerText2}>from integrations to registration and from interactive stage elements to</Text>
+        <Text style={styles.computerText2}>post-event data, It's all here</Text>
 
-      {/* Children Content */}
-      <View style={styles.childrenContent}>{children}</View>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={Login}>
+            </Stack.Screen>
+        </Stack.Navigator>
+
+        <Text style={styles.buttonText}>One nore Thing,</Text>
+        <Text style={styles.buttonText}>PSYCLeD allows you to sense emotions</Text>
+        <Text style={styles.buttonText}>in text.</Text>
+
+      </View>
     </View>
   );
 };
@@ -59,29 +79,34 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 16,
   },
+
   container: {
     flex: 1,
     backgroundColor: '#000', // 대체 배경
   },
+
   mainContent: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16,
   },
+
   title: {
     fontSize: 25,
-    marginTop: 40,
+    marginTop: 180,
     fontWeight: 'bold',
     color: '#FFFFFF',
     textAlign: 'center',
   },
+
   subtitle: {
     fontSize: 18,
     color: '#FFFFFF',
     marginTop: 8,
     textAlign: 'center',
   },
+
   button: {
     marginTop: 20,
     paddingVertical: 10,
@@ -93,11 +118,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
+
   buttonText: {
     color: '#000',
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   profileWrapper: {
     marginTop: 40,
     borderRadius: 50,
@@ -109,10 +136,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   profileImage: {
     width: '100%',
     height: '100%',
   },
+
   childrenContent: {
     flex: 1,
     paddingHorizontal: 16,
@@ -124,30 +153,41 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   pencilText2: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   pencilText3: {
     fontSize: 10,
     color: '#fff',
     marginTop: 10,
   },
+
   pencilText4: {
     fontSize: 10,
     color: '#fff',
   },
+
   computer: {
     width: '100%',
     height: '100%',
   },
+
   computerText: {
     marginTop: 20,
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
+
+  HowItWorks: {
+    color: '#fff',
+    fontSize: 25,
+  },
+
   computerText2: {
     fontSize: 10,
     color: '#fff',
