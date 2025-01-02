@@ -3,32 +3,35 @@ import { ReactNode } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from 'react-native';
 import Header from '@/components/Header';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation, NavigationProp } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '@/components/Login'; // Add this line to import the Login component
+import Login from '@/components/Login'; 
 
 const Stack = createStackNavigator();
 
+type RootStackParamList = {
+  Login: undefined;
+};
+
 const Layout = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <View style={styles.container}>
       <Header />
       {/* Header */}
-      <ScrollView contentContainerStyle={styles.scrollContent}/>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
 
       {/* Main Content */}
       <View style={styles.mainContent}>
         <Text style={styles.title}>Explore your feelings;</Text>
         <Text style={styles.subtitle}>we're here to hear</Text>
 
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Login"
-            component={Login}>
-            </Stack.Screen>
-        </Stack.Navigator>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.buttonText}>Get started</Text>
+          </TouchableOpacity>
 
         <View style={styles.profileWrapper}>
           <Image
@@ -42,9 +45,11 @@ const Layout = () => {
         <Text style={styles.pencilText4}>from your texts,</Text>
         <Text style={styles.pencilText4}>such as joy, sadness, etc</Text>
         <View style={styles.profileWrapper}>
+
           <Image
             source={require('@/assets/images/computer.png')}
             style={styles.computer}/>
+
         </View>
         <Text style={styles.computerText}>Analyze your</Text>
         <Text style={styles.computerText}>feelings deeply</Text>
@@ -59,18 +64,18 @@ const Layout = () => {
         <Text style={styles.computerText2}>from integrations to registration and from interactive stage elements to</Text>
         <Text style={styles.computerText2}>post-event data, It's all here</Text>
 
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Login"
-            component={Login}>
-            </Stack.Screen>
-        </Stack.Navigator>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.buttonText}>Get started</Text>
+          </TouchableOpacity>
 
         <Text style={styles.buttonText}>One nore Thing,</Text>
         <Text style={styles.buttonText}>PSYCLeD allows you to sense emotions</Text>
         <Text style={styles.buttonText}>in text.</Text>
 
       </View>
+      </ScrollView>
     </View>
   );
 };

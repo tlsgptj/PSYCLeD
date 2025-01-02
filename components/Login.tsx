@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { View, TextInput, Button, Text } from 'react-native';
 
-const Login: React.FC = () => {
+type RootStackParamList = {
+  Home: undefined;
+  Login: undefined;
+};
+
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
+
+
+const Login: React.FC<Props> = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -36,5 +49,9 @@ const Login: React.FC = () => {
         </View>
     );
 };
+
+const styles = {
+
+}
 
 export default Login;

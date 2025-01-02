@@ -4,7 +4,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Layout from '../components/layout';
 import Login from '../components/Login';
 
-const Stack = createStackNavigator();
+type RootStackParamList = {
+    Home: undefined;
+    Login: undefined;
+  };
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
