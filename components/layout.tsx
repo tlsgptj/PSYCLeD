@@ -5,7 +5,6 @@ import { ScrollView } from 'react-native';
 import Header from '@/components/Header';
 import { NavigationContainer, useNavigation, NavigationProp } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '@/components/Login'; 
 
 const Stack = createStackNavigator();
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { View, TextInput, Button, Text, BackHandler } from 'react-native';
 import { StyleSheet } from 'react-native';
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 type RootStackParamList = {
   Home: undefined;
@@ -21,6 +23,7 @@ const Login: React.FC<Props> = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [user, setUser] = useState(null);
 
     const handleLogin = () => {
         if (email === 'test@example.com' && password === 'password') {
@@ -30,6 +33,8 @@ const Login: React.FC<Props> = ({ navigation }) => {
             setError('Invalid email or password');
         }
     };
+
+    const clientId = 'clientID';
 
     return (
         <View style={styles.container}>
@@ -57,6 +62,19 @@ const Login: React.FC<Props> = ({ navigation }) => {
 
             <Text style={styles.started}>Is it your first time?</Text>
             <Button title="click here" onPress={() => navigation.navigate('register')}/>
+
+
+            <GoogleOAuthProvider clientId={clientId}>
+                <GoogleLogin 
+                    onSuccess={(res) => {
+                        console.log('Google login successful', res);
+                        setUser(res.profileObj);
+                    }}
+                    onError={() => {
+                        console.log('Google login failed');
+                    }} 
+                />
+            </GoogleOAuthProvider>
         </View>
     );
 };
@@ -90,9 +108,6 @@ const styles = StyleSheet.create({
     Button: {
         color: 'blue'
     },
-
-
-
 
 
 });
