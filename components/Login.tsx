@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { View, TextInput, Button, Text } from 'react-native';
+import { View, TextInput, Button, Text, BackHandler } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 type RootStackParamList = {
   Home: undefined;
   Login: undefined;
+  register: undefined;
+  forgot: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -22,7 +25,6 @@ const Login: React.FC<Props> = ({ navigation }) => {
     const handleLogin = () => {
         if (email === 'test@example.com' && password === 'password') {
             setError('');
-            // Handle successful login
             console.log('Login successful');
         } else {
             setError('Invalid email or password');
@@ -30,7 +32,12 @@ const Login: React.FC<Props> = ({ navigation }) => {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
+
+            <Text style={styles.started}>Let's get started</Text>
+
+            <Text style={styles.email}>email address</Text>
+
             <TextInput
                 placeholder="Email"
                 value={email}
@@ -38,6 +45,7 @@ const Login: React.FC<Props> = ({ navigation }) => {
                 keyboardType="email-address"
                 autoCapitalize="none"
             />
+            <Text style={styles.password}>password</Text>
             <TextInput
                 placeholder="Password"
                 value={password}
@@ -46,12 +54,47 @@ const Login: React.FC<Props> = ({ navigation }) => {
             />
             {error ? <Text>{error}</Text> : null}
             <Button title="Login" onPress={handleLogin} />
+
+            <Text style={styles.started}>Is it your first time?</Text>
+            <Button title="click here" onPress={() => navigation.navigate('register')}/>
         </View>
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
+    container : {
+        backgroundColor: '#000',
+        flex: 1,
+        justifyContent: 'center',
+    },
 
-}
+    started: {
+        fontSize: 16,
+        color: '#fff',
+        textAlign: 'center',
+        marginTop: 20,
+    },
+
+    email: {
+        color: '#fff',
+        marginTop: 30,
+        fontSize: 10,
+    },
+
+    password: {
+        color: '#fff',
+        marginTop: 20,
+        fontSize: 10,
+    },
+
+    Button: {
+        color: 'blue'
+    },
+
+
+
+
+
+});
 
 export default Login;
