@@ -63,7 +63,8 @@ const Login: React.FC<Props> = ({ navigation }) => {
             <Text style={styles.started}>Is it your first time?</Text>
             <Button title="click here" onPress={() => navigation.navigate('register')}/>
 
-
+            <Button title="Forgot password?" onPress={() => navigation.navigate('forgot')} />
+                
             <GoogleOAuthProvider clientId={clientId}>
                 <GoogleLogin 
                     onSuccess={(res) => {

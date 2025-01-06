@@ -4,11 +4,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Layout from '../components/layout';
 import Login from '../components/Login';
 import register from '../components/register';
+import findPassword from '../components/FindPassword';
 
 type RootStackParamList = {
     Home: undefined;
     Login: undefined;
     register: undefined;
+    findPassword: undefined;
   };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -33,6 +35,13 @@ const App = () => {
           component={register} 
           options={{ title: 'register page' }} 
         />
+
+        <Stack.Screen
+          name="findPassword"
+          component={findPassword}
+          options={{ title: 'findPassword page'}}
+          />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

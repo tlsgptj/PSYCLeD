@@ -14,29 +14,25 @@ type Props = {
 };
 
 const Register = () => {
-    const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
+    const [passwordCheck, setPasswordCheck] = React.useState('');
 
     const handleRegister = () => {
-        console.log('Registering user:', { username, password, email });
+        console.log('Registering user:', { password, email });
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Register</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Username"
-                value={username}
-                onChangeText={setUsername}
-            />
+            <Text style={styles.title}>Hello! welcome here.</Text>
+            <Text style={styles.ment1}>email address</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
             />
+            <Text style={styles.ment1}>password</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Password"
@@ -44,7 +40,23 @@ const Register = () => {
                 onChangeText={setPassword}
                 secureTextEntry
             />
-            <Button title="Register" onPress={handleRegister} />
+
+            <Text style={styles.ment}>Password must be 8-12 characters</Text>
+            <Text style={styles.ment}>with letters, numbers, and</Text>
+            <Text style={styles.ment}>special characters.</Text>
+
+            <Text style={styles.ment1}>password check</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Password Check"
+                value={passwordCheck}
+                onChangeText={setPasswordCheck}
+                secureTextEntry
+            />
+
+            <View style={styles.button}>
+                <Button onPress={handleRegister} title="Sign up" />
+            </View>
         </View>
     );
 };
@@ -52,6 +64,7 @@ const Register = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#000",
         justifyContent: 'center',
         padding: 16,
     },
@@ -66,6 +79,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 12,
         paddingHorizontal: 8,
+    },
+    ment: {
+        color: '#fff',
+        textAlign: 'center',
+    },
+    ment1: {
+        color: '#fff',
+        textAlign: 'left', 
+        marginTop: 30,
+    },
+    button: {
+        marginTop: 20,
+        backgroundColor: '#fff',
+        color: '#000',
     },
 });
 

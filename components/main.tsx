@@ -8,7 +8,6 @@ type RootStackParamList = {
     Login: undefined;
     register: undefined;
     Main: undefined;
-    
 }
 
 const Main = () => {
