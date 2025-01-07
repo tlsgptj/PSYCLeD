@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet ,View, TextInput, Button, Text, Alert } from 'react-native';
-import PsyLed from './main/PSYLeD';
+import PsyLed from '../main/PSYLeD';
 type RootStackParamList = {
     Home: undefined;
     Login: undefined;

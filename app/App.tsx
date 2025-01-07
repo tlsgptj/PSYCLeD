@@ -2,9 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Layout from '../components/layout';
-import Login from '../components/Login';
-import register from '../components/register';
-import findPassword from '../components/FindPassword';
+import Login from '../components/User/Login';
+import register from '../components/User/register';
+import findPassword from '../components/User/FindPassword';
 
 type RootStackParamList = {
     Home: undefined;
